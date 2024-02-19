@@ -9,6 +9,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
+    Comment = serializers.SerializerMethodField('get_comments')
+
+    def get_comments(self, post):
+        comments = Comment.objects.filter(post=post)
+        return CommentSerializer(comments, many=True).data
     class Meta:
         model = Post
         fields = '__all__'

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': [
+'rest_framework.authentication.BasicAuthentication',
+'rest_framework.authentication.SessionAuthentication',
+],
+'DEFAULT_PERMISSION_CLASSES': [
+'rest_framework.permissions.AllowAny',
+],
+}
 
 ROOT_URLCONF = 'blog_api.urls'
 
